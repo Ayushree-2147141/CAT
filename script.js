@@ -6,6 +6,16 @@ var phone = document.getElementById('phone');
 var dob = document.getElementById('birth-date');
 var email = document.getElementById('email');
 var branch = document.getElementById('branch');
+var age = document.getElementById('age');
+var address = document.getElementById('Caddress');
+var cstate = document.getElementById('Cstate');
+var university = document.getElementById('university')
+
+function capital(element){
+  let user=element.value;
+  const caps = user.charAt(0).toUpperCase() + user.slice(1);
+  element.value=caps;
+}
 
 function testname(event)
 {
@@ -188,16 +198,21 @@ function validatePhone()
     span[9].style.color= "red";
     return false;
   }
+  // else if(!regex.test(phone.value.trim()))
+  // {
+  //   span[9].innerText="Mobile number should contain 10  digits only!";
+  //   return false;
+  // }
   else if(regex.test(phone.value.trim()))
   {
-      if(phno.value.length == 10)
+      if(phone.value.length == 10)
       {
         span[9].innerText = "Valid Phone-number!";
         span[9].style.color="green";
         phone.style.border="green";
         return true;
       }
-      else
+     else
       {
         span[9].innerText = "Invalid Phone!";
         phone.style.border = "2px red solid";
@@ -242,6 +257,143 @@ function validateBranch()
   }
 }
 
+
+function validateAddress()
+{
+  const regex = /^[a-zA-z0-9\s,.-]+$/;
+
+  if(address.value.trim()== "" || address.value.trim() == null)
+  {
+    span[7].innerText="Blank Address!";
+    address.style.border ="2px solid red";
+    span[7].style.color = "red";
+    return false;
+  }
+
+  else if (regex.test(address.value.trim()) ) 
+  {     
+    span[7].innerText = "Valid Address!";
+    span[7].style.color = "green";
+    address.style.border ="2px solid green";
+    return true;
+  }
+  else
+  {
+    address.style.border="2px red solid";
+    span[7].style.color ="red";
+    address.style.border ="2px solid red";
+    span[7].innerText = "Invalid Address!";
+    return false;
+  }
+}
+
+function validateState()
+{
+  const regex = /^[a-zA-z\s]+$/;
+
+  if(cstate.value.trim()== "" || cstate.value.trim() == null)
+  {
+    span[6].innerText="Blank state!";
+    cstate.style.border ="2px solid red";
+    span[6].style.color = "red";
+    return false;
+  }
+
+  else if (regex.test(cstate.value.trim()) ) 
+  {     
+    span[6].innerText = "Valid state!";
+    span[6].style.color = "green";
+    cstate.style.border ="2px solid green";
+    return true;
+  }
+  else
+  {
+    cstate.style.border="2px red solid";
+    span[6].style.color ="red";
+    cstate.style.border ="2px solid red";
+    span[6].innerText = "Invalid Address!";
+    return false;
+  }
+}
+
+function validateUniversity()
+{
+  const regex = /^[a-zA-z\s]+$/;
+
+  if(university.value.trim()== "" || university.value.trim() == null)
+  {
+    span[6].innerText="Blank university name!";
+    university.style.border ="2px solid red";
+    span[6].style.color = "red";
+    return false;
+  }
+
+  else if (regex.test(university.value.trim()) ) 
+  {     
+    span[6].innerText = "Valid university!";
+    span[6].style.color = "green";
+    university.style.border ="2px solid green";
+    return true;
+  }
+  else
+  {
+    university.style.border="2px red solid";
+    span[6].style.color ="red";
+    university.style.border ="2px solid red";
+    span[6].innerText = "Invalid University name!";
+    return false;
+  }
+}
+
+
+function validateAge()
+{
+const regex = /^[0-9]{2,3}$/;
+// const regex2 = /^[a-zA-z]+$/;
+
+if (age.value.trim() == "" || age.value.trim() == null) 
+  {
+    span[8].innerText="Blank Age!";
+    age.style.border ="2px solid red";
+    span[8].style.color = "red";
+    return false;
+  } 
+  else if (regex.test(age.value.trim()) ) 
+  {     
+    if(age.value >= 18 && age.value < 80)
+    {
+    span[8].innerText = "Valid Age!";
+    span[8].style.color = "green";
+    age.style.border ="2px solid green";
+    return true;
+    }
+    else if(age.value < 18)
+    {
+      span[8].innerText = "InValid Age!";
+      span[8].style.color = "red";
+      age.style.border ="2px solid red";
+      return false;
+    }
+    else
+    {
+      span[8].innerText = "Too old to register!";
+      span[8].style.color = "lime";
+      age.style.border ="2px solid lime";
+      return false;
+    }
+    
+  }
+  else
+  {
+    branch.style.border="2px red solid";
+    span[8].style.color ="red";
+    age.style.border ="2px solid red";
+    span[8].innerText = "Invalid Age!";
+    return false;
+  }
+
+}
+
 function validate()
 {
 
@@ -253,6 +405,10 @@ function validate()
     validateBranch();
     validateUsername();
     validatePhone();
+    validateAge();
+    validateAddress();
+    validateState();
+    validateUniversity();
   }
   else
   {

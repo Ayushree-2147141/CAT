@@ -1,4 +1,4 @@
-/*--JS for DOM Parser--*/
+
 
 var xmlDoc
 var xmlFile ='./index.xml'
